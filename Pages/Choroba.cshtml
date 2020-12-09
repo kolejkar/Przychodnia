@@ -1,0 +1,26 @@
+﻿@page
+@model Przychodnia.Pages.ChorobaModel
+@{
+    ViewData["Title"] = "Choroba";
+}
+
+<h2>Choroba</h2>
+
+<form method="post">
+    <p>Podaj swoje dolegliwości:<input type="text" asp-for="opisChoroby" placeholder="Opisz wizytę" /></p>
+    <p>Podaj swój Pesel:<input type="text" asp-for="Pesel" placeholder="Pesel" /></p>
+    <table>
+        <tr>
+            <td>Lekarz:</td>
+            <td>Rezerwacja wizyty:</td>
+        </tr>
+        @foreach (Lekarz lek in Model.lekarze)
+        {
+            <tr>
+                <td>@lek.imie @lek.nazwisko</td>
+                <td><button asp-page-handler="Select" asp-route-id="@lek.id">Rezerwacja</button></td>
+            </tr>
+        }
+    </table>
+</form>
+

@@ -1,0 +1,71 @@
+﻿@page
+@model Przychodnia.Pages.RezerwacjaModel
+@{
+    ViewData["Title"] = "Rezerwacja";
+}
+
+<h2>Rezerwacja</h2>
+<p>@Model.dateTime.ToLongDateString()</p>
+<table>
+    <tr>
+        <td>Lp</td>
+        <td>Godzina</td>
+        <td>Lekarz</td>
+        <td>Rezerwacja</td>
+    </tr>
+    @for (int i = 0; i < 10; i++)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].godzina.ToString()</td>
+            <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).lekarz.imie @Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).lekarz.nazwisko</td>
+            @if (!Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].rezerwacja)
+            {
+            <td><a asp-page-handler="Register" asp-route-opisChoroby="@Model.OpisChoroby" asp-route-id="@i" asp-route-dzien="@Model.dateTime.Date" asp-route-idLekarza="@Model.IdLekarza" asp-route-pesel="@Model.Pesel">Rezerwacja</a></td>
+            }
+
+        </tr>
+    }
+</table>
+<p>@Model.dateTime.AddDays(1).ToLongDateString()</p>
+<table>
+    <tr>
+        <td>Lp</td>
+        <td>Godzina</td>
+        <td>Lekarz</td>
+        <td>Rezerwacja</td>
+    </tr>
+    @for (int i = 0; i < 10; i++)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].godzina.ToString()</td>
+            <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).lekarz.imie @Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).lekarz.nazwisko</td>
+            @if (!Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].rezerwacja)
+            {
+            <td><a asp-page-handler="Register" asp-route-opisChoroby="@Model.OpisChoroby" asp-route-id="@i" asp-route-dzien="@Model.dateTime.AddDays(1).Date" asp-route-idLekarza="@Model.IdLekarza" asp-route-pesel="@Model.Pesel">Rezerwacja</a></td>
+            }
+        </tr>
+    }
+</table>
+<p>@Model.dateTime.AddDays(2).ToLongDateString()</p>
+<table>
+    <tr>
+        <td>Lp</td>
+        <td>Godzina</td>
+        <td>Lekarz</td>
+        <td>Rezerwacja</td>
+    </tr>
+    @for (int i = 0; i < 10; i++)
+    {
+        <tr>
+            <td>@(i + 1)</td>
+            <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].godzina.ToString()</td>
+            <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).lekarz.imie @Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).lekarz.nazwisko</td>
+            @if (!Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].rezerwacja)
+            {
+            <td><a asp-page-handler="Register" asp-route-opisChoroby="@Model.OpisChoroby" asp-route-id="@i" asp-route-dzien="@Model.dateTime.AddDays(2).Date" asp-route-idLekarza="@Model.IdLekarza" asp-route-pesel="@Model.Pesel">Rezerwacja</a></td>
+            }
+        </tr>
+    }
+</table>

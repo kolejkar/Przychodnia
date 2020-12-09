@@ -1,0 +1,66 @@
+﻿@page
+@model Przychodnia.Pages.LekarzModel
+@{
+    ViewData["Title"] = "Lekarz";
+}
+
+<h2>Lekarz</h2>
+<h3>@Model.lekarz.imie @Model.lekarz.nazwisko</h3>
+<p>@Model.dateTime.ToLongDateString()</p>
+<table>
+    <tr>
+        <td>Lp</td>
+        <td>Godzina</td>
+        <td>Pesel Pacjenta</td>
+        <td>Cel wizyty:</td>
+    </tr>
+    @for (int i = 0; i < 10; i++)
+    {
+    <tr>
+        <td>@(i + 1)</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].godzina.ToString()</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].PeselPacjenta</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].choroba</td>
+
+    </tr>
+    }
+</table>
+<p>@Model.dateTime.AddDays(1).ToLongDateString()</p>
+<table>
+    <tr>
+        <td>Lp</td>
+        <td>Godzina</td>
+        <td>Pesel Pacjenta</td>
+        <td>Cel wizyty:</td>
+    </tr>
+    @for (int i = 0; i < 10; i++)
+    {
+    <tr>
+        <td>@(i + 1)</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].godzina.ToString()</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].PeselPacjenta</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].choroba</td>
+
+    </tr>
+    }
+</table>
+<p>@Model.dateTime.AddDays(2).ToLongDateString()</p>
+<table>
+    <tr>
+        <td>Lp</td>
+        <td>Godzina</td>
+        <td>Pesel Pacjenta</td>
+        <td>Cel wizyty:</td>
+    </tr>
+    @for (int i = 0; i < 10; i++)
+    {
+    <tr>
+        <td>@(i + 1)</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].godzina.ToString()</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].PeselPacjenta</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].choroba</td>
+
+    </tr>
+    }
+</table>
+
