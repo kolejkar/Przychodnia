@@ -1,0 +1,15 @@
+﻿@page
+@model PacjentModel
+@{
+    ViewData["Title"] = "NewPerson";
+}
+
+<h2>Rejestracja pacjenta w przychodni</h2>
+<p>Podaj swoje dane potrzebne do założenia kartoteki.</p>
+<form method="post">
+    <p>Imię:<input type="text" asp-for="Imie" placeholder="Imię: " /></p>
+    <p>Nazwisko:<input type="text" asp-for="Nazwisko" placeholder="Nazwisko: " /></p>
+    <p>Pesel:<input type="text" asp-for="Pesel" placeholder="Nazwisko: " /></p>
+    <p>Hasło:<input type="text" asp-for="Haslo" placeholder="Hasło: " /></p>
+    <button type="submit">Załóż</button>
+</form>

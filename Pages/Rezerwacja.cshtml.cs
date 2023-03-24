@@ -25,6 +25,7 @@ namespace Przychodnia.Pages
         public Lekarz lekarz { get; set; }
         [BindProperty]
         public string Pesel { get; set; }
+        public List<Pacjent> pacjenci;
 
         public void OnGet(int idLekarza, string opisChoroby, string pesel)
         {
@@ -40,12 +41,11 @@ namespace Przychodnia.Pages
                 dniPracy.Add(new DzienPracy(lekarz, DateTime.Now));
                 dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(1)));
                 dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(2)));
-
-                SaveData();
+                XMLOperations.SaveData(lekarz, dniPracy);
             }
             else
             {
-                LoadData();
+                dniPracy = XMLOperations.LoadData(lekarz);
                 CheckDay(lekarz);
             }
         }
@@ -56,43 +56,41 @@ namespace Przychodnia.Pages
             IndexModel = new IndexModel();
             IndexModel.LoadData();
             lekarz = IndexModel.lekarze.Find(l => l.id == idLekarza);
-            LoadData();
+            dniPracy = XMLOperations.LoadData(lekarz);
             DzienPracy dzienPracy = dniPracy.Find(d => d.dzien.Date == data);
             dzienPracy.wizyty[id].rezerwacja = true;
             dzienPracy.wizyty[id].choroba = opisChoroby;
-            dzienPracy.wizyty[id].PeselPacjenta = pesel;
-            SaveData();
+            PacjentLoadData();
+            dzienPracy.wizyty[id].pacjent = pacjenci.Find(p => p.pesel == pesel);
+            XMLOperations.SaveData(lekarz, dniPracy);
             return RedirectToPage("/Index");
-        }
-
-        public void LoadData()
-        {
-            Stream stream = System.IO.File.Open(lekarz.id.ToString() + ".xml", FileMode.Open);
-
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            dniPracy = (List<DzienPracy>)formatter.Deserialize(stream);
-            stream.Close();
-        }
-
-        public void SaveData()
-        {
-            Stream stream = System.IO.File.Open(lekarz.id.ToString() + ".xml", FileMode.Create);
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            formatter.Serialize(stream, dniPracy);
-            stream.Close();
         }
 
         public void CheckDay(Lekarz lekarz)
         {
+            bool addDay = false;
             for (int i = 0; i < 3; i++)
             {
                 if (!dniPracy.Exists(d => d.dzien.Date == DateTime.Now.AddDays(i)))
                 {
                     dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(i)));
+                    addDay = true;
                 }
             }
+            if (addDay)
+            {
+                XMLOperations.SaveData(lekarz, dniPracy);
+            }
+        }
+
+        public void PacjentLoadData()
+        {
+            Stream stream = System.IO.File.Open("pacjent.xml", FileMode.Open);
+
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            pacjenci = (List<Pacjent>)formatter.Deserialize(stream);
+            stream.Close();
         }
     }
 }

@@ -31,42 +31,44 @@ namespace Przychodnia.Pages
                 dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(1)));
                 dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(2)));
 
-                SaveData();
+                XMLOperations.SaveData(lekarz, dniPracy);
             }
             else
             {
-                LoadData();
+                dniPracy = XMLOperations.LoadData(lekarz);
                 CheckDay(lekarz);
             }
         }
 
-        public void LoadData()
+        public IActionResult OnGetRegister(string dzien, int id, int idLekarza, string opisChoroby, string pesel)
         {
-            Stream stream = System.IO.File.Open(lekarz.id.ToString() + ".xml", FileMode.Open);
+            DateTime data = DateTime.Parse(dzien);
+            IndexModel = new IndexModel();
+            IndexModel.LoadData();
+            lekarz = IndexModel.lekarze.Find(l => l.id == idLekarza);
+            dniPracy = XMLOperations.LoadData(lekarz);
+            DzienPracy dzienPracy = dniPracy.Find(d => d.dzien.Date == data);
 
-            BinaryFormatter formatter = new BinaryFormatter();
 
-            dniPracy = (List<DzienPracy>)formatter.Deserialize(stream);
-            stream.Close();
-        }
 
-        public void SaveData()
-        {
-            Stream stream = System.IO.File.Open(lekarz.id.ToString() + ".xml", FileMode.Create);
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            formatter.Serialize(stream, dniPracy);
-            stream.Close();
+            XMLOperations.SaveData(lekarz, dniPracy);
+            return RedirectToPage("/Wizyta");
         }
 
         public void CheckDay(Lekarz lekarz)
         {
+            bool addDay = false;
             for (int i = 0; i < 3; i++)
             {
                 if (!dniPracy.Exists(d => d.dzien.Date == DateTime.Now.AddDays(i)))
                 {
                     dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(i)));
+                    addDay = true;
                 }
+            }
+            if (addDay)
+            {
+                XMLOperations.SaveData(lekarz, dniPracy);
             }
         }
     }

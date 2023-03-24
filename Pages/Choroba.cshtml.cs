@@ -40,7 +40,7 @@ namespace Przychodnia.Pages
                 Page();
             }
             idLekarza = id;
-            return RedirectToPage("/Rezerwacja", new { idLekarza = id, opisChoroby, Pesel});
+            return RedirectToPage("/Pacjent", new { idLekarza = id, opisChoroby, Pesel});
         }
 
        

@@ -19,8 +19,9 @@
     <tr>
         <td>@(i + 1)</td>
         <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].godzina.ToString()</td>
-        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].PeselPacjenta</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].pacjent.pesel</td>
         <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].choroba</td>
+        <td><a asp-page-handler="Register" asp-route-opisChoroby="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].choroba" asp-route-id="@i" asp-route-dzien="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].godzina" asp-route-idLekarza="@Model.lekarz.id" asp-route-pesel="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].pacjent.pesel">Wizyta</a></td>
 
     </tr>
     }
@@ -38,8 +39,9 @@
     <tr>
         <td>@(i + 1)</td>
         <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].godzina.ToString()</td>
-        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].PeselPacjenta</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].pacjent.pesel</td>
         <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(1).Date).wizyty[i].choroba</td>
+        <td><a asp-page-handler="Register" asp-route-opisChoroby="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].choroba" asp-route-id="@i" asp-route-dzien="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].godzina" asp-route-idLekarza="@Model.lekarz.id" asp-route-pesel="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].pacjent.pesel">Wizyta</a></td>
 
     </tr>
     }
@@ -57,8 +59,9 @@
     <tr>
         <td>@(i + 1)</td>
         <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].godzina.ToString()</td>
-        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].PeselPacjenta</td>
+        <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].pacjent.pesel</td>
         <td>@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.AddDays(2).Date).wizyty[i].choroba</td>
+        <td><a asp-page-handler="Register" asp-route-opisChoroby="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].choroba" asp-route-id="@i" asp-route-dzien="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].godzina" asp-route-idLekarza="@Model.lekarz.id" asp-route-pesel="@Model.dniPracy.Find(d => d.dzien.Date == Model.dateTime.Date).wizyty[i].pacjent.pesel">Wizyta</a></td>
 
     </tr>
     }

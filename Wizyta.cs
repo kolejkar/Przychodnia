@@ -10,12 +10,14 @@ namespace Przychodnia
     {
         public TimeSpan godzina;
         public string choroba;
-        public string PeselPacjenta;
+        //public string PeselPacjenta;
+        public Pacjent pacjent;
         public bool rezerwacja = false;
 
         public Wizyta(TimeSpan Godzina)
         {
             godzina = Godzina;
+            pacjent = new Pacjent();
         }
     }
 }
