@@ -57,7 +57,7 @@ namespace Przychodnia.Pages
             IndexModel.LoadData();
             lekarz = IndexModel.lekarze.Find(l => l.id == idLekarza);
             dniPracy = XMLOperations.LoadData(lekarz);
-            DzienPracy dzienPracy = dniPracy.Find(d => d.dzien.Date == data);
+            DzienPracy dzienPracy = dniPracy.Find(d => d.dzien.Date == data.Date);
             dzienPracy.wizyty[id].rezerwacja = true;
             dzienPracy.wizyty[id].choroba = opisChoroby;
             PacjentLoadData();
@@ -71,7 +71,7 @@ namespace Przychodnia.Pages
             bool addDay = false;
             for (int i = 0; i < 3; i++)
             {
-                if (!dniPracy.Exists(d => d.dzien.Date == DateTime.Now.AddDays(i)))
+                if (!dniPracy.Exists(d => d.dzien.Date == DateTime.Now.AddDays(i).Date))
                 {
                     dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(i)));
                     addDay = true;

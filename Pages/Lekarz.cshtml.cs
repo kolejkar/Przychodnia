@@ -40,19 +40,11 @@ namespace Przychodnia.Pages
             }
         }
 
-        public IActionResult OnGetRegister(string dzien, int id, int idLekarza, string opisChoroby, string pesel)
+        public IActionResult OnGetRegister(string dzien, string data, int idLekarza, string opisChoroby, string pesel)
         {
-            DateTime data = DateTime.Parse(dzien);
-            IndexModel = new IndexModel();
-            IndexModel.LoadData();
-            lekarz = IndexModel.lekarze.Find(l => l.id == idLekarza);
-            dniPracy = XMLOperations.LoadData(lekarz);
-            DzienPracy dzienPracy = dniPracy.Find(d => d.dzien.Date == data);
-
-
-
-            XMLOperations.SaveData(lekarz, dniPracy);
-            return RedirectToPage("/Wizyta");
+            //DateTime data1 = DateTime.Parse(data);
+            //TimeSpan dzien1 = TimeSpan.Parse(dzien);
+            return RedirectToPage("/Wizyta", new {opisChoroby, data, dzien, idLekarza, pesel });
         }
 
         public void CheckDay(Lekarz lekarz)
@@ -60,7 +52,7 @@ namespace Przychodnia.Pages
             bool addDay = false;
             for (int i = 0; i < 3; i++)
             {
-                if (!dniPracy.Exists(d => d.dzien.Date == DateTime.Now.AddDays(i)))
+                if (!dniPracy.Exists(d => d.dzien.Date == DateTime.Now.AddDays(i).Date))
                 {
                     dniPracy.Add(new DzienPracy(lekarz, DateTime.Now.AddDays(i)));
                     addDay = true;

@@ -123,7 +123,7 @@ Write(Model.dateTime.ToLongDateString());
             WriteLiteral("            <td>");
             EndContext();
             BeginContext(803, 215, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "99757e344f204ab19e2239b60db6fc7c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ae9690a2680f4133bd8b9d0307d3408e", async() => {
                 BeginContext(1004, 10, true);
                 WriteLiteral("Rezerwacja");
                 EndContext();
@@ -278,7 +278,7 @@ Write(Model.dateTime.AddDays(1).ToLongDateString());
             WriteLiteral("            <td>");
             EndContext();
             BeginContext(1814, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "641a3e427b5e4f388183687997fe20aa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3a699a07a794a67b97dd4fbc741cfad", async() => {
                 BeginContext(2026, 10, true);
                 WriteLiteral("Rezerwacja");
                 EndContext();
@@ -433,7 +433,7 @@ Write(Model.dateTime.AddDays(2).ToLongDateString());
             WriteLiteral("            <td>");
             EndContext();
             BeginContext(2834, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2e01a8fcff7949b7946ea8f667a4187c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "163f0a2d1ca24b4ea9f60ca418a610ba", async() => {
                 BeginContext(3046, 10, true);
                 WriteLiteral("Rezerwacja");
                 EndContext();
