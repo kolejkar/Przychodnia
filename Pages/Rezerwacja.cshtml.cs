@@ -60,7 +60,7 @@ namespace Przychodnia.Pages
             DzienPracy dzienPracy = dniPracy.Find(d => d.dzien.Date == data.Date);
             dzienPracy.wizyty[id].rezerwacja = true;
             dzienPracy.wizyty[id].choroba = opisChoroby;
-            PacjentLoadData();
+            pacjenci = PacjentIO.LoadData();
             dzienPracy.wizyty[id].pacjent = pacjenci.Find(p => p.pesel == pesel);
             XMLOperations.SaveData(lekarz, dniPracy);
             return RedirectToPage("/Index");
@@ -81,16 +81,6 @@ namespace Przychodnia.Pages
             {
                 XMLOperations.SaveData(lekarz, dniPracy);
             }
-        }
-
-        public void PacjentLoadData()
-        {
-            Stream stream = System.IO.File.Open("pacjent.xml", FileMode.Open);
-
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            pacjenci = (List<Pacjent>)formatter.Deserialize(stream);
-            stream.Close();
         }
     }
 }

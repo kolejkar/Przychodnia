@@ -25,6 +25,8 @@ namespace Przychodnia.Pages
         public DateTime dateTime { get; set; }
         [BindProperty]
         public List<Pacjent> pacjenci { get; set; }
+        [BindProperty]
+        public string Zalecenia { get; set; }
 
         public Lekarz lekarz { get; set; }
 
@@ -39,7 +41,7 @@ namespace Przychodnia.Pages
             lekarz = IndexModel.lekarze.Find(l => l.id == idLekarza);
             dniPracy = XMLOperations.LoadData(lekarz);
             CheckDay(lekarz);
-            PacjentLoadData();
+            pacjenci = PacjentIO.LoadData();
             Pacjent pacjent = pacjenci.Find(p => p.pesel == pesel);
             Imie = pacjent.imie;
             Nazwisko = pacjent.nazwisko;
@@ -62,14 +64,19 @@ namespace Przychodnia.Pages
             }
         }
 
-        public void PacjentLoadData()
+        public IActionResult OnPost(string date, int lekid)
         {
-            Stream stream = System.IO.File.Open("pacjent.xml", FileMode.Open);
-
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            pacjenci = (List<Pacjent>)formatter.Deserialize(stream);
-            stream.Close();
+            dateTime = DateTime.Parse(date);
+            IndexModel = new IndexModel();
+            IndexModel.LoadData();
+            lekarz = IndexModel.lekarze.Find(l => l.id == lekid);
+            dniPracy = XMLOperations.LoadData(lekarz);
+            CheckDay(lekarz);
+            Wizyta[] wiz = dniPracy.Find(d => d.dzien.Date == dateTime.Date).wizyty;
+            Wizyta wizyta = wiz.First(w => w.godzina == dateTime.TimeOfDay);
+            wizyta.zaleceniaLekarskie = Zalecenia;
+            XMLOperations.SaveData(lekarz, dniPracy);
+            return RedirectToPage("/Lekarz", new { idLekarza = lekid });
         }
     }
 }

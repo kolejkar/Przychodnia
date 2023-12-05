@@ -40,7 +40,14 @@ namespace Przychodnia.Pages
                 Page();
             }
             idLekarza = id;
-            return RedirectToPage("/Pacjent", new { idLekarza = id, opisChoroby, Pesel});
+            if (Pesel != IndexModel.Pesel)
+            {
+                return RedirectToPage("/Pacjent", new { idLekarza = id, opisChoroby, Pesel });
+            }
+            else
+            {
+                return RedirectToPage("/Rezerwacja", new { id, opisChoroby, Pesel });
+            }
         }
 
        

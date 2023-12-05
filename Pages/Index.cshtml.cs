@@ -44,5 +44,7 @@ namespace Przychodnia.Pages
             lekarze = (List<Lekarz>)formatter.Deserialize(stream);
             stream.Close();
         }
+
+        public static string Pesel;
     }
 }

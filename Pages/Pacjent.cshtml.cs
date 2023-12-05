@@ -36,7 +36,7 @@ namespace Przychodnia.Pages
             pesel = Pesel;
             if (System.IO.File.Exists("pacjent.xml"))
             {
-                LoadData();
+                pacjenci = PacjentIO.LoadData();
             }
             if (pacjenci != null)
             {
@@ -59,7 +59,7 @@ namespace Przychodnia.Pages
             }
             if (System.IO.File.Exists("pacjent.xml"))
             {
-                LoadData();
+                pacjenci = PacjentIO.LoadData();
             }
             else
             {
@@ -71,28 +71,8 @@ namespace Przychodnia.Pages
             pacjent.haslo = Haslo;
             pacjent.pesel = Pesel;
             pacjenci.Add(pacjent);
-            SaveData();
+            PacjentIO.SaveData(pacjenci);
             return RedirectToPage("/Rezerwacja", new { IdLekarza, OpisChoroby, pacjent.pesel });
-        }
-
-        public void SaveData()
-        {
-
-            Stream stream = System.IO.File.Open("pacjent.xml", FileMode.Create);
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            formatter.Serialize(stream, pacjenci);
-            stream.Close();
-        }
-
-        public void LoadData()
-        {
-            Stream stream = System.IO.File.Open("pacjent.xml", FileMode.Open);
-
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            pacjenci = (List<Pacjent>)formatter.Deserialize(stream);
-            stream.Close();
         }
     }
 }

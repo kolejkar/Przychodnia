@@ -10,7 +10,7 @@ namespace Przychodnia
     {
         public TimeSpan godzina;
         public string choroba;
-        //public string PeselPacjenta;
+
         public Pacjent pacjent;
         public bool rezerwacja = false;
 
@@ -19,5 +19,7 @@ namespace Przychodnia
             godzina = Godzina;
             pacjent = new Pacjent();
         }
+
+        public string zaleceniaLekarskie;
     }
 }

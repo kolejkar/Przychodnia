@@ -1,14 +1,14 @@
 ﻿@page
 @model Przychodnia.Pages.WizytaModel
 @{
-    ViewData["Title"] = "Test";
+    ViewData["Title"] = "Wizyta";
 }
 
 <h2>@Model.dateTime</h2>
-<form method="post">
-    <p>Imię pacjenta:<input type="text" asp-for="Imie" placeholder="Imię : " /></p>
-    <p>Nazwisko pacjenta:<input type="text" asp-for="Nazwisko" placeholder="Nazwisko pacjenta: " /></p>
-    <p>Pesel:<input type="text" asp-for="Pesel" placeholder="Pesel: " /></p>
-
+<form method="post" asp-route-date="@Model.dateTime.ToString()" asp-route-lekid="@Model.lekarz.id">
+    <p>Imię pacjenta:<input type="text" asp-for="Imie" placeholder="Imię : " disabled /></p>
+    <p>Nazwisko pacjenta:<input type="text" asp-for="Nazwisko" placeholder="Nazwisko pacjenta: " disabled /></p>
+    <p>Pesel:<input type="text" asp-for="Pesel" placeholder="Pesel: " disabled /></p>
+    <p>Zalecenia:<input type="text" asp-for="Zalecenia" placeholder="Zalecenia: " /></p>
     <button type="submit">Zapisz</button>
 </form>

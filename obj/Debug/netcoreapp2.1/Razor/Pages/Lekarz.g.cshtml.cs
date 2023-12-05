@@ -134,7 +134,7 @@ Write(Model.dateTime.ToLongDateString());
             WriteLiteral("</td>\r\n        <td>");
             EndContext();
             BeginContext(746, 491, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "371ffba3b8a24b179782de6a97a63006", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d79d6f7b9dbc49ddba1e4f6ff46bca5f", async() => {
                 BeginContext(1227, 6, true);
                 WriteLiteral("Wizyta");
                 EndContext();
@@ -272,7 +272,7 @@ Write(Model.dateTime.AddDays(1).ToLongDateString());
             WriteLiteral("</td>\r\n        <td>");
             EndContext();
             BeginContext(1906, 491, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8cb76f566c0f4c5b9e674b43458a78a9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66ca2b7370124f588ef2d1859d3b1961", async() => {
                 BeginContext(2387, 6, true);
                 WriteLiteral("Wizyta");
                 EndContext();
@@ -410,7 +410,7 @@ Write(Model.dateTime.AddDays(2).ToLongDateString());
             WriteLiteral("</td>\r\n        <td>");
             EndContext();
             BeginContext(3066, 491, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "90c28dbbbf794aa0a5b6acb80d37c528", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "efbe759fb7f644f383f5966a1c95b998", async() => {
                 BeginContext(3547, 6, true);
                 WriteLiteral("Wizyta");
                 EndContext();
