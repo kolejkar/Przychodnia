@@ -12,5 +12,18 @@ namespace Przychodnia
         public string nazwisko;
         public string pesel;
         public string haslo;
+
+        public Pacjent(string Imie, string Nazwisko, string Pesel, string Haslo)
+        {
+            imie = Imie;
+            nazwisko = Nazwisko;
+            pesel = Pesel;
+            haslo = Haslo;
+        }
+
+        public Pacjent()
+        {
+
+        }
     }
 }
