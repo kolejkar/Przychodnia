@@ -1,4 +1,4 @@
-<h1 align="center">Przychodia</h1>
+<h1 align="center">Przychodnia</h1>
 <h3 align="center">Projekt na zajęcia</h3>
 
 <p align="left">
